@@ -17,5 +17,6 @@ jobs:
           Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
         azPSVersion: "latest" 
     - name: Run PS script
-      run: ./powershellscript.ps1 -resource_group_name ${{vars.resource_group_name}} -storageaccount_names ${{vars.storageaccount_names}} -sku ${{vars.sku}}
+      run: |
+       ./powershellscript.ps1 -resource_group_name ${{vars.RESOURCE_GROUP_NAME}} -storageaccount_names ${{vars.STORAGEACCOUNT_NAMES}} -sku ${{vars.SKU}}
       shell: pwsh
