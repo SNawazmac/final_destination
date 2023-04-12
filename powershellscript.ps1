@@ -18,7 +18,7 @@ $failover = Invoke-AzStorageAccountFailover -ResourceGroupName $resource_group_n
 
 Wait-Job $failover
 
-foreach($storageaccount_name in $storageaccount_names)
+foreach($storageaccount_name in $storageaccounts)
 {
 #Below command updates the SKU of the storage account(s) to Standard_GRS post failover
 Set-AzStorageAccount -ResourceGroupName $resource_group_name -Name $storageaccount_name -SkuName $sku -Force
