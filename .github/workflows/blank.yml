@@ -1,0 +1,22 @@
+name: Azureconnect
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Login via Az module
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: Run Azure PowerShell script
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+          Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
+        azPSVersion: "latest" 
+    - name: Run PS script
+      run: |
+       ./Invoke_Failover_Storage_multi-values_param.ps1 -resource_group_name ${{vars.resource_group_name}} -storageaccount_names ${{vars.storageaccount_names}} -sku ${{vars.sku}}
+      shell: pwsh
