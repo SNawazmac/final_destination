@@ -18,5 +18,6 @@ jobs:
         azPSVersion: "latest" 
     - name: Run PS script
       run: |
-       ./powershellscript.ps1 -resource_group_name ${{vars.resource_group_name}} -storageaccount_names ${{vars.storageaccount_names}} -sku ${{vars.sku}}
+       $sacsplit = $${{vars.storageaccount_names[@]}}
+       ./powershellscript.ps1 -resource_group_name ${{vars.resource_group_name}} -storageaccount_names ${{vars.sacsplit}} -sku ${{vars.sku}}
       shell: pwsh
