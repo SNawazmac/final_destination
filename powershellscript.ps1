@@ -1,6 +1,6 @@
 param(
 [Parameter(Mandatory=$true)][string]$resource_group_name,       #Enter the resourcegroup name of the Storageaccount
-[Parameter(Mandatory=$true)][string]$storageaccount_names,        #Enter the storage account name(s) on which failover has to be initiated
+[Parameter(Mandatory=$true)][array]$storageaccount_names,        #Enter the storage account name(s) on which failover has to be initiated
 [Parameter(Mandatory=$true)][string]$sku                       #Enter the SKU as Standard_GRS to re-enable geo-replication post failover
 )
 
